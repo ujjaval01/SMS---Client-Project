@@ -10,6 +10,8 @@ import resultRoutes from './routes/results.js';
 import announcementRoutes from './routes/announcements.js';
 import attendanceRoutes from './routes/attendance.js';
 import feeRoutes from './routes/fees.js';
+import assignmentRoutes from './routes/assignments.js';
+
 
 
 
@@ -71,6 +73,8 @@ app.use('/api/results', resultRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/fees', feeRoutes);
+app.use('/api/assignments', assignmentRoutes);
+
 
 
 

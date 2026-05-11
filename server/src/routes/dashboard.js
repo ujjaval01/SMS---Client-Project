@@ -20,7 +20,8 @@ router.get('/summary', async (req, res) => {
       results
 
     ] = await Promise.all([
-      prisma.student.findMany({ include: { results: true, fees: true } }),
+      prisma.student.findMany({ include: { user: true, results: true, fees: true, class: true } }),
+
       prisma.teacher.findMany({ include: { user: true } }),
       prisma.class.findMany({ include: { _count: { select: { students: true } } } }),
       prisma.announcement.findMany({ orderBy: { createdAt: 'desc' } }),
