@@ -3,10 +3,12 @@ import { AppRoutes } from './routes/AppRoutes'
 import { useAppStore } from './stores/useAppStore'
 import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CommandPalette } from './components/ui/CommandPalette'
 
 function App() {
   const hydrateSession = useAppStore((s) => s.hydrateSession)
   const toasts = useAppStore((s) => s.toasts)
+  const theme = useAppStore((s) => s.theme)
 
   useEffect(() => {
     hydrateSession()
@@ -14,7 +16,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <div className={theme}>
+        <div className="min-h-screen bg-slate-950 text-slate-200 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-200 light:bg-slate-50 light:text-slate-900">
+          <AppRoutes />
+          <CommandPalette />
+        </div>
+      </div>
       
       {/* Global Toast System */}
       <div className="fixed bottom-6 left-1/2 z-[100] flex -translate-x-1/2 flex-col gap-2">

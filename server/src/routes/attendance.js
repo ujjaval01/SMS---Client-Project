@@ -24,25 +24,33 @@ router.post('/mark', protect, authorize('TEACHER', 'ADMIN'), async (req, res) =>
   try {
     const { studentId, status, date } = req.body;
     
+    console.log('Marking attendance:', { studentId, status, date });
+
+    if (!studentId || !status) {
+       return res.status(400).json({ message: 'Missing studentId or status' });
+    }
+
     // 1. Create the daily record
     const record = await prisma.attendance.create({
       data: {
         studentId,
         status,
-        date: new Date(date)
+        date: date ? new Date(date) : new Date()
       }
     });
 
-    // 2. Update the student's aggregate attendance percentage (Mock calculation for now)
-    // In a real app, you'd calculate this from all records
+    // 2. Update the student's aggregate attendance percentage (Mock calculation)
     await prisma.student.update({
       where: { id: studentId },
       data: { attendancePct: { increment: status === 'Present' ? 1 : -1 } }
     });
 
+    console.log('Attendance marked successfully');
+
     emitEvent('attendance_updated', { studentId, status });
     res.status(201).json(record);
   } catch (error) {
+    console.error('Attendance Mark Error:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });

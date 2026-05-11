@@ -7,13 +7,39 @@
   }
 }
 
+/* Light Theme Overrides */
+.light .bg-slate-950 {
+  @apply bg-slate-50;
+}
+.light .text-slate-200 {
+  @apply text-slate-900;
+}
+.light .glass {
+  @apply bg-white/70 backdrop-blur-xl border border-slate-200 shadow-xl;
+}
+.light .card {
+  @apply bg-white border border-slate-200 text-slate-900 shadow-sm;
+}
+.light input, .light select, .light textarea {
+  @apply bg-white border-slate-300 text-slate-900;
+}
+.light .text-slate-400 {
+  @apply text-slate-500;
+}
+.light .text-slate-500 {
+  @apply text-slate-600;
+}
+.light .bg-slate-900\/50, .light .bg-slate-900\/60 {
+  @apply bg-slate-100;
+}
+
 @layer components {
   .glass {
     @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
   }
   
   .glow-button {
-    @apply relative overflow-hidden bg-cyan-600 transition-all hover:bg-cyan-500 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] active:scale-95;
+    @apply relative overflow-hidden bg-indigo-600 transition-all hover:bg-indigo-500 hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] active:scale-95 text-white;
   }
 }
 
@@ -25,13 +51,13 @@
   @apply bg-transparent;
 }
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  @apply bg-indigo-500/20 rounded-full hover:bg-indigo-500/40 transition-colors;
 }
 
 /* Auth Background */
 .auth-bg {
-  background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent),
-              radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.1), transparent);
+  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent),
+              radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.1), transparent);
 }
 
 /* Hero Gradients */
